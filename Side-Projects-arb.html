@@ -20,7 +20,20 @@
     <link id="theme-style" rel="stylesheet" href="assets/css/theme-1.css">
 
 </head> 
-
+<style>
+	/* تنسيقات لتحديد الكود */
+	.code-container {
+		background-color: #f4f4f4; /* لون خلفية */
+		padding: 15px; /* تباعد داخلي */
+		border: 1px solid #ddd; /* إطار */
+		border-radius: 5px; /* زوايا مدورة */
+		font-family: "Courier New", monospace; /* خط مناسب للكود */
+		overflow-x: auto; /* تمكين التمرير الأفقي إذا كان الكود طويلًا */
+	}
+	.code-container code {
+		color: #d63384; /* لون النص */
+	}
+</style>
 <body>
     
     <header class="header text-center">	    
@@ -82,6 +95,87 @@
 					يستفيد المستخدمون من الإشعارات الفورية التي تبقيهم على اطلاع بالتحركات المهمة مثل انتهاء عقود أو تعديلات. بالإضافة إلى ذلك، يقدم البرنامج مجموعة واسعة من القوالب القابلة للتخصيص المصممة لتلبية احتياجات مختلف الصناعات، مما يسهل عملية إنشاء العقود لتلبية المتطلبات المحددة.
 					<br> 
 					علاوة على ذلك، تضمن منصتنا الامتثال للمعايير القانونية والتنظيمية ذات الصلة، مما يوفر للمستخدمين راحة البال. من خلال استخدام برنامج إنشاء وإدارة العقود الذكية الخاص بنا، يمكن للمستخدمين تعزيز الأمان، وتبسيط عمليات العقود، وبناء الثقة في اتفاقياتهم الإلكترونية.</p>
+			   			    <!-- إضافة الفيديو -->
+	<div class="card" >
+		<video  controls>
+			<source src="contant.mp4" type="video/mp4">
+		</video>
+		<div class="card-body">
+			<p class="card-text">يقدم هذا الفيديو برنامج ، الذي يعمل على تبسيط الاتفاقيات الإلكترونية. يمكنك إنشاء العقود ومراجعتها وتوقيعها بسهولة باستخدام واجهة سهلة الاستخدام. يتم تخزين العقود بشكل آمن، ولا يمكن التلاعب بها، ويمكن الوصول إليها في أي وقت. احصل على تحديثات في الوقت الفعلي واستخدم قوالب قابلة للتخصيص لتسريع سير العمل. اضمن الامتثال وبناء الثقة - كل ذلك في منصة واحدة. قم بتبسيط إدارة العقود اليوم!  <span style=" color: rgb(77, 95, 252);">فيما يلي، سأعرض لك مقتطفًا من الكود المصدر للمشروع</span>.</p>
+		  </div>
+	</div>
+					<!-------------------------------------------------->
+					 
+						<div class="code-container">
+						<pre><code>
+				
+    if(isset($_POST['submit']))
+    {
+        $familyN       = filter_var($_POST['familyN'],FILTER_SANITIZE_STRING);
+        $name          = filter_var($_POST['name'],FILTER_SANITIZE_STRING);
+        $fatherN       = filter_var($_POST['fatherN'],FILTER_SANITIZE_STRING);
+        $nationality   = filter_var($_POST['nationality'],FILTER_SANITIZE_STRING);
+        $noPassport	   = filter_var($_POST['noPassport'],FILTER_SANITIZE_STRING);
+        $DTbirth       = filter_var($_POST['DTbirth'],FILTER_SANITIZE_STRING);
+        $city          = filter_var($_POST['city'],FILTER_SANITIZE_STRING);
+        $street        = filter_var($_POST['street'],FILTER_SANITIZE_STRING);
+        $noBuilding    = filter_var($_POST['noBuilding'],FILTER_SANITIZE_STRING);
+        $phone         = filter_var($_POST['phone'],FILTER_SANITIZE_STRING);
+        $email         = filter_var($_POST['email'],FILTER_SANITIZE_EMAIL);
+
+        $image_location = $_FILES['image'] ['tmp_name'];
+        $image_name= $_FILES['image'] ['name'];
+        $image_up= 'photo/'.$image_name;
+        
+        
+        move_uploaded_file($image_location,$image_up)
+       
+
+     
+
+        
+        if(empty($familyN) or empty($name) or empty($fatherN) or empty($nationality) 
+        or empty($noPassport) or empty($DTbirth) or empty($city) or empty($street) 
+        or empty($noBuilding) or empty($phone) or empty($email))
+        {
+            
+            $error = "Please Fill All Fields";
+        }
+        else 
+        {
+            if(strlen($name) > 3)
+            {
+                if(filter_var($email,FILTER_VALIDATE_EMAIL))
+                {
+                    
+                  
+                        
+                            $db = new Database();
+                            
+                           
+                            
+                            $sql = "INSERT INTO employee (`familyN`,`name`,`fatherN`,`nationality`,`noPassport`,`DTbirth`,`city`,`street`,`noBuilding`,`phone`,`email`,`image`) 
+                                                  VALUES ('$familyN','$name','$fatherN','$nationality','$noPassport','$DTbirth','$city','$street','$noBuilding','$phone','$email','$image_up') ";
+                            $success = $db->insert($sql);
+                            
+                           
+                  
+                }
+                else 
+                {
+                    $error = "Please Type Valid Email";
+                }
+            }
+            else 
+            {
+                $error = "name Must be Grater Than 3 chars !";
+            }
+        }
+ 
+    }
+						</code></pre>
+					</div>
+					 <!--================================================-->
 			    <h5 class="mt-5">نظام إدارة العيادات الطبية</h5>
 			    <p>نظام إدارة العيادات الطبية هو حل برمجي متطور مصمم لتحسين وتعزيز عمليات العيادات الطبية. من خلال دمج مجموعة واسعة من الوظائف، يسهل النظام إدارة معلومات المرضى، جدولة المواعيد، الفوترة، والسجلات السريرية، مما يحسن في النهاية الكفاءة التشغيلية ورعاية المرضى.
 
@@ -96,6 +190,55 @@
 					علاوة على ذلك، تعزز العمليات الم streamlined زيادة رضا المرضى من خلال تقليل أوقات الانتظار وتحسين التواصل، مما يساهم في تجربة عيادة أكثر إيجابية. النظام أيضًا فعال من حيث التكلفة، حيث يقلل من التكاليف الإدارية ويقلل من الأخطاء في الفوترة وحفظ السجلات، مما يحسن في النهاية الأداء المالي للعيادات.
 					
 					بالإضافة إلى ذلك، يساعد النظام العيادات في الحفاظ على الامتثال للوائح والمعايير الصحية، مما يضمن التعامل مع بيانات المرضى بشكل آمن وسري. مع توسع العيادات، يسمح نظام إدارة العيادات الطبية بالتكيف بسهولة مع زيادة أعداد المرضى والخدمات الإضافية، مما يجعله أداة أساسية للممارسات الطبية الحديثة.</p>
+			       <!-- إضافة الفيديو -->
+	<div class="card" >
+		<video  controls>
+			<source src="DOCTR.mp4" type="video/mp4">
+		</video>
+		<div class="card-body">
+			<p class="card-text">فيديو يوضح البرنامج أثناء العمل<span style=" color: rgb(77, 95, 252);">فيما يلي، سأعرض لك مقتطفًا من الكود المصدر للمشروع</span>.</p>
+		  </div>
+	</div>
+					<!-------------------------------------------------->
+					 
+						<div class="code-container">
+						<pre><code>
+				 
+                  foreach ($row as $cell): 
+                    $doct_info = "doct_info.php";
+                    ?>
+                    <td>  
+                     //=============================================
+                     $date = new DateTime (base64_decode($row[11]));
+                     $date->modify('-3 days');
+                     $threeMonthsLater = $date->format('Y-m-d');
+                    //=============================================
+                     $date1 = new DateTime(base64_decode($row[11]));
+                     $date1->modify('-7 days');
+                     $threeMonthsLater1 = $date1->format('Y-m-d');
+                     //echo $threeMonthsLater;
+                     //=============================================
+
+                     if ($threeMonthsLater === date('Y-m-d') ){
+                        echo '<a href="' . $doct_info . '?param1='.(base64_decode($row[0])) . '"><div style="background-color: #e67e22;">' . base64_decode($cell) . '</div></a>';
+
+                     } elseif($threeMonthsLater1 === date('Y-m-d')){
+                        echo '<a href="' . $doct_info . '?param1='.(base64_decode($row[0])) . '"><div style="background-color: #2980b9;">' . base64_decode($cell) . '</div></a>';
+
+                     }elseif(base64_decode($row[11]) < date('Y-m-d')){
+                        //echo "<div style='background-color: #ff3f34;'>".base64_decode($cell)."</div>";
+
+                        echo '<a href="' . $doct_info . '?param1='.(base64_decode($row[0])) . '"><div style="background-color: #ff3f34;">' . base64_decode($cell) . '</div></a>';
+                    }else
+                     {
+                        echo '<a href="' . $doct_info . '?param1='.(base64_decode($row[0])) . '"><div>' . base64_decode($cell) . '</div></a>';
+                     }
+                    // 
+                        ?></td>
+                 
+						</code></pre>
+					</div>
+					 <!--================================================-->
 			    <h5 class="mt-5">برنامج اداره المطاعم</h5>
 			    <p>البرنامج يعمل كأداة شاملة لإدارة العمليات في المطعم من خلال دمج الوظائف الأساسية لإدارة فعالة. يتميز بتتبع المخزون، وإدارة معاملات المبيعات، والإشراف على عمليات الشراء، مما يعزز في النهاية اتخاذ القرارات وتخصيص الموارد.
 
@@ -122,7 +265,25 @@
 					بالإضافة إلى ذلك، لدي خبرة في إنشاء واجهات برمجة تطبيقات مخصصة لتسهيل التواصل بين الخدمات المصغرة داخل التطبيقات. استخدمت أطر عمل مثل إكسبرس لجافا سكريبت وفلَاسك لبايثون، مما أتاح لي بناء نقاط نهاية واجهة برمجة تطبيقات قابلة للتوسع وفعالة تتناسب مع متطلبات التطبيق.
 					
 					أنا أيضًا على دراية بأدوات مثل بوستمان وسواغر، التي كانت لا تقدر بثمن لاختبار وتوثيق واجهات برمجة التطبيقات. لقد سهلت هذه الأدوات سير العمل الخاص بي، مما مكنني من التعاون بفعالية مع أعضاء الفريق وضمان أن جميع المعنيين على نفس الصفحة فيما يتعلق بوظائف واجهة برمجة التطبيقات.</p>
-					
+				<!-- إضافة الفيديو -->
+ <div class="card" >
+	<video  controls>
+		<source src="AVTO.mp4" type="video/mp4">
+	</video>
+	<div class="card-body">
+		<p class="card-text">يُظهر هذا الفيديو كيفية استخدام API لربط الموقع الروسي forum-auto.ru بصفحة ويب مخصصة، حيث يتم عرض نفس النتائج في الوقت الفعلي. تعرّف على كيفية تمكين API من تكامل البيانات بسلاسة وتعزيز تجربة المستخدم من خلال أتمتة جلب البيانات وعرضها.
+
+
+
+
+
+
+
+</p>
+	  </div>
+</div>
+				<!-------------------------------------------------->
+				 	
 		    </div>
 	    </article><!--//about-section-->
 	    
