@@ -20,7 +20,20 @@
     <link id="theme-style" rel="stylesheet" href="assets/css/theme-1.css">
 
 </head> 
-
+<style>
+	/* تنسيقات لتحديد الكود */
+	.code-container {
+		background-color: #f4f4f4; /* لون خلفية */
+		padding: 15px; /* تباعد داخلي */
+		border: 1px solid #ddd; /* إطار */
+		border-radius: 5px; /* زوايا مدورة */
+		font-family: "Courier New", monospace; /* خط مناسب للكود */
+		overflow-x: auto; /* تمكين التمرير الأفقي إذا كان الكود طويلًا */
+	}
+	.code-container code {
+		color: #d63384; /* لون النص */
+	}
+</style>
 <body>
     
     <header class="header text-center">	    
@@ -41,7 +54,7 @@
 			            <li class="list-inline-item"><a href="https://wa.me/+79384748823"><i class="fab fa-whatsapp fa-fw"></i></a></li>
 			            <li class="list-inline-item"><a href="https://www.linkedin.com/in/hussein-al-naser-139316337?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
 			            <li class="list-inline-item"><a href="https://github.com/Hussea"><i class="fab fa-github-alt fa-fw"></i></a></li>
-			            <li class="list-inline-item"><a href="https://www.1instagram.com/1_asmar?igsh=MTdubXZlemU2eTJ6YQ%3D%3D&utm_source=qr"><i class="fab fa-instagram fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://www.instagram.com/1_asmar?igsh=MTdubXZlemU2eTJ6YQ%3D%3D&utm_source=qr"><i class="fab fa-instagram fa-fw"></i></a></li>
 			            <li class="list-inline-item"><a href="http://t.me/AsmarRus"><i class="fab fa-telegram fa-fw"></i></a></li>
 						<div  >alameryhh@gmail.com</div><!--//bio-->
 
@@ -67,7 +80,8 @@
 			</div>
 		</nav>
     </header>
-    
+	
+	
    
     <div class="main-wrapper">
 	    	    
@@ -82,7 +96,88 @@
 					Users benefit from real-time notifications, which keep them informed of important actions such as contract expirations or amendments. Additionally, the program offers a wide range of customizable templates tailored to various industries, simplifying the contract creation process to meet specific needs.
 					<br> 
 					Furthermore, our platform ensures compliance with relevant legal standards and regulations, providing users with peace of mind. By utilizing our smart contract creation and management program, users can enhance security, streamline their contract processes, and build trust in their electronic agreements.</p>
-			    <h5 class="mt-5">Medical clinics management system</h5>
+			    <!-- إضافة الفيديو -->
+	<div class="card" >
+		<video  controls>
+			<source src="contant.mp4" type="video/mp4">
+		</video>
+		<div class="card-body">
+			<p class="card-text">This video introduces My Smart Contract Program, simplifying electronic agreements. Create, review, and sign contracts easily with a user-friendly interface. Contracts are securely stored, tamper-proof, and accessible anytime. Get real-time updates and use customizable templates for faster workflows. Ensure compliance and build trust—all in one platform. Simplify contract management today!  <span style=" color: rgb(77, 95, 252);"> Below, I will show you a snippet of the source code for the project</span>.</p>
+		  </div>
+	</div>
+					<!-------------------------------------------------->
+					 
+						<div class="code-container">
+						<pre><code>
+				
+    if(isset($_POST['submit']))
+    {
+        $familyN       = filter_var($_POST['familyN'],FILTER_SANITIZE_STRING);
+        $name          = filter_var($_POST['name'],FILTER_SANITIZE_STRING);
+        $fatherN       = filter_var($_POST['fatherN'],FILTER_SANITIZE_STRING);
+        $nationality   = filter_var($_POST['nationality'],FILTER_SANITIZE_STRING);
+        $noPassport	   = filter_var($_POST['noPassport'],FILTER_SANITIZE_STRING);
+        $DTbirth       = filter_var($_POST['DTbirth'],FILTER_SANITIZE_STRING);
+        $city          = filter_var($_POST['city'],FILTER_SANITIZE_STRING);
+        $street        = filter_var($_POST['street'],FILTER_SANITIZE_STRING);
+        $noBuilding    = filter_var($_POST['noBuilding'],FILTER_SANITIZE_STRING);
+        $phone         = filter_var($_POST['phone'],FILTER_SANITIZE_STRING);
+        $email         = filter_var($_POST['email'],FILTER_SANITIZE_EMAIL);
+
+        $image_location = $_FILES['image'] ['tmp_name'];
+        $image_name= $_FILES['image'] ['name'];
+        $image_up= 'photo/'.$image_name;
+        
+        
+        move_uploaded_file($image_location,$image_up)
+       
+
+     
+
+        
+        if(empty($familyN) or empty($name) or empty($fatherN) or empty($nationality) 
+        or empty($noPassport) or empty($DTbirth) or empty($city) or empty($street) 
+        or empty($noBuilding) or empty($phone) or empty($email))
+        {
+            
+            $error = "Please Fill All Fields";
+        }
+        else 
+        {
+            if(strlen($name) > 3)
+            {
+                if(filter_var($email,FILTER_VALIDATE_EMAIL))
+                {
+                    
+                  
+                        
+                            $db = new Database();
+                            
+                           
+                            
+                            $sql = "INSERT INTO employee (`familyN`,`name`,`fatherN`,`nationality`,`noPassport`,`DTbirth`,`city`,`street`,`noBuilding`,`phone`,`email`,`image`) 
+                                                  VALUES ('$familyN','$name','$fatherN','$nationality','$noPassport','$DTbirth','$city','$street','$noBuilding','$phone','$email','$image_up') ";
+                            $success = $db->insert($sql);
+                            
+                           
+                  
+                }
+                else 
+                {
+                    $error = "Please Type Valid Email";
+                }
+            }
+            else 
+            {
+                $error = "name Must be Grater Than 3 chars !";
+            }
+        }
+ 
+    }
+						</code></pre>
+					</div>
+					 <!--================================================-->
+					<h5 class="mt-5">Medical clinics management system</h5>
 			    <p>The Medical Clinics Management System (MCMS) is a sophisticated software solution designed to optimize and enhance the operations of medical clinics. By integrating a wide array of functionalities, the MCMS facilitates the management of patient information, appointment scheduling, billing, and clinical records, ultimately improving both operational efficiency and patient care.
 					One of the core components of the MCMS is its Patient Management feature, which enables clinics to securely store and manage comprehensive patient records, encompassing personal information, medical history, and treatment plans. This is complemented by an intuitive Appointment Scheduling system that allows for easy scheduling, rescheduling, and cancellation of appointments, thereby reducing wait times and elevating patient satisfaction.
 					The MCMS also automates Billing and Invoicing processes, generating invoices and managing insurance claims efficiently, which ensures timely payments and alleviates the administrative burden on staff. Furthermore, the system supports the maintenance of up-to-date Electronic Health Records (EHR), enabling healthcare providers to access critical patient information swiftly and accurately.
@@ -90,7 +185,56 @@
 					The benefits of implementing the MCMS are substantial. By automating routine tasks such as appointment scheduling and billing, clinics can significantly improve operational efficiency, allowing administrative staff to concentrate on more critical responsibilities. Enhanced patient care is a direct outcome of quick access to patient records and health histories, enabling healthcare providers to deliver accurate diagnoses and tailored treatment plans.
 					Moreover, the streamlined processes foster increased patient satisfaction through shorter wait times and improved communication, contributing to a more positive clinic experience. The system is also cost-effective, as it reduces administrative overhead and minimizes errors in billing and record-keeping, ultimately improving the financial performance of clinics.
 					Additionally, the MCMS aids clinics in maintaining compliance with healthcare regulations and standards, ensuring that patient data is handled securely and confidentially. As clinics expand, the scalability of the MCMS allows it to easily accommodate increased patient loads and additional services, positioning it as an essential tool for the modern medical practice.</p>
-			    <h5 class="mt-5">Restaurant management</h5>
+			    <!-- إضافة الفيديو -->
+	<div class="card" >
+		<video  controls>
+			<source src="DOCTR.mp4" type="video/mp4">
+		</video>
+		<div class="card-body">
+			<p class="card-text">A video showcasing the program in action<span style=" color: rgb(77, 95, 252);"> Below, I will show you a snippet of the source code for the project</span>.</p>
+		  </div>
+	</div>
+					<!-------------------------------------------------->
+					 
+						<div class="code-container">
+						<pre><code>
+				 
+                  foreach ($row as $cell): 
+                    $doct_info = "doct_info.php";
+                    ?>
+                    <td>  
+                     //=============================================
+                     $date = new DateTime (base64_decode($row[11]));
+                     $date->modify('-3 days');
+                     $threeMonthsLater = $date->format('Y-m-d');
+                    //=============================================
+                     $date1 = new DateTime(base64_decode($row[11]));
+                     $date1->modify('-7 days');
+                     $threeMonthsLater1 = $date1->format('Y-m-d');
+                     //echo $threeMonthsLater;
+                     //=============================================
+
+                     if ($threeMonthsLater === date('Y-m-d') ){
+                        echo '<a href="' . $doct_info . '?param1='.(base64_decode($row[0])) . '"><div style="background-color: #e67e22;">' . base64_decode($cell) . '</div></a>';
+
+                     } elseif($threeMonthsLater1 === date('Y-m-d')){
+                        echo '<a href="' . $doct_info . '?param1='.(base64_decode($row[0])) . '"><div style="background-color: #2980b9;">' . base64_decode($cell) . '</div></a>';
+
+                     }elseif(base64_decode($row[11]) < date('Y-m-d')){
+                        //echo "<div style='background-color: #ff3f34;'>".base64_decode($cell)."</div>";
+
+                        echo '<a href="' . $doct_info . '?param1='.(base64_decode($row[0])) . '"><div style="background-color: #ff3f34;">' . base64_decode($cell) . '</div></a>';
+                    }else
+                     {
+                        echo '<a href="' . $doct_info . '?param1='.(base64_decode($row[0])) . '"><div>' . base64_decode($cell) . '</div></a>';
+                     }
+                    // 
+                        ?></td>
+                 
+						</code></pre>
+					</div>
+					 <!--================================================-->
+					<h5 class="mt-5">Restaurant management</h5>
 			    <p>The software serves as a comprehensive management tool designed to streamline the operations of a restaurant by integrating essential functionalities for effective management. It excels in tracking inventory, managing sales transactions, and overseeing purchasing processes, ultimately enhancing decision-making and resource allocation.
 
 					Key Features
@@ -116,7 +260,17 @@
 					Additionally, I have experience in creating custom APIs to facilitate communication between microservices within applications. I utilized frameworks such as Express.js for Node.js and Flask for Python, allowing me to build scalable and efficient API endpoints tailored to the application's requirements.
 					
 					I am also familiar with tools like Postman and Swagger, which have been invaluable for testing and documenting APIs. These tools have streamlined my workflow, enabling me to collaborate effectively with team members and ensure that all stakeholders are on the same page regarding API functionalities.</p>
-					
+ <!-- إضافة الفيديو -->
+ <div class="card" >
+	<video  controls>
+		<source src="AVTO.mp4" type="video/mp4">
+	</video>
+	<div class="card-body">
+		<p class="card-text">This video demonstrates the process of using API to connect the Russian website forum-auto.ru with a custom webpage that displays the same results in real-time. Learn how APIs enable seamless data integration and enhance user experience by automating data retrieval and display.</p>
+	  </div>
+</div>
+				<!-------------------------------------------------->
+				 
 		    </div>
 	    </article><!--//about-section-->
 	    
